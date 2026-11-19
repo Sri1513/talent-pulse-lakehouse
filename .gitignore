@@ -1,0 +1,36 @@
+# Python bytecode and packaging — regenerable, never committed
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+
+# Secrets and environment — the one that matters most
+.env
+*.pem
+*.key
+
+# Data and local state
+data/
+logs/
+*.log
+*.parquet
+
+# Spark runtime files — created when Spark runs locally
+spark-warehouse/
+metastore_db/
+derby.log
+
+# dbt build artifacts (dbt project root is transformations/)
+transformations/target/
+transformations/dbt_packages/
+transformations/logs/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
