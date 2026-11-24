@@ -9,7 +9,9 @@ description = "Plug-and-play lakehouse turning raw job postings into live market
 requires-python = ">=3.11,<3.13"
 dependencies = [
     # Must match the cluster: Spark 4.2.1 + Delta 4.4.1 on de-lab (/opt/spark)
-    "pyspark==4.2.1",
+    # delta-spark 4.4.1 caps pyspark at <=4.2.0 (pip ResolutionImpossible on 4.2.1);
+    # 4.2.0 client vs 4.2.1 cluster is a patch gap, tolerated inside the 4.2 line
+    "pyspark==4.2.0",
     "delta-spark==4.4.1",
     "psycopg[binary]==3.3.9",
     "pyyaml==6.0.2",
