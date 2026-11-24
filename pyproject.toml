@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "talent-pulse-lakehouse"
+version = "0.1.0"
+description = "Plug-and-play lakehouse turning raw job postings into live market trends."
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    # Must match the cluster: Spark 4.2.1 + Delta 4.4.1 on de-lab (/opt/spark)
+    "pyspark==4.2.1",
+    "delta-spark==4.4.1",
+    "psycopg[binary]==3.3.9",
+    "pyyaml==6.0.2",
+    "python-dotenv==1.1.0",
+    # dbt matches the working de-lab venv (1.11.17) — do not bump untested
+    "dbt-core==1.11.17",
+    "dbt-postgres==1.11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==8.3.4",
+    "ruff==0.9.6",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
