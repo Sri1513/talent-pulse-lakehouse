@@ -1,0 +1,70 @@
+# config/domains/data-engineering.yaml
+# One file per domain. Adding a domain = copying this file and writing
+# its taxonomy — not new code. The pipeline takes a --domain flag and
+# reads everything below from here.
+version: 1
+
+domain:
+  slug: data-engineering
+  label: Data Engineering
+  short_label: DE
+  description: Data engineering roles — pipelines, warehousing, and the platforms that move data.
+
+source_filter:
+  # How to recognize this domain's jobs in scout.saved_jobs.
+  # Title patterns, case-insensitive substring match — ANY match counts.
+  # A title matching none of these is not a Data Engineering role.
+  title_contains_any:
+    - data engineer
+    - data engineering
+    - etl developer
+    - etl engineer
+    - data warehouse
+    - analytics engineer
+    - data platform
+    - business intelligence engineer
+    - bi engineer
+    - data integration
+
+skill_taxonomy:
+  # Canonical skill: [aliases]. Aliases are variants of the SAME skill only —
+  # PostgreSQL stays its own skill, it is not folded into SQL.
+  python: [python, py]
+  apache_spark: [apache spark, spark, pyspark, py spark]
+  sql: [sql, t-sql, tsql, pl/sql]
+  postgresql: [postgresql, postgres]
+  mysql: [mysql]
+  snowflake: [snowflake]
+  databricks: [databricks]
+  aws_glue: [aws glue, glue]
+  aws: [aws, amazon web services]
+  azure: [azure, microsoft azure]
+  azure_data_factory: [azure data factory, adf]
+  synapse: [synapse, azure synapse]
+  kafka: [kafka, apache kafka]
+  airflow: [airflow, apache airflow]
+  dbt: [dbt, dbt core, dbt cloud]
+  terraform: [terraform]
+  kubernetes: [kubernetes, k8s]
+  docker: [docker]
+  redshift: [redshift, amazon redshift]
+  emr: [emr, amazon emr]
+  s3: [s3, amazon s3]
+  lambda: [lambda, aws lambda]
+  power_bi: [power bi, powerbi]
+  tableau: [tableau]
+  bigquery: [bigquery, google bigquery]
+  scala: [scala]
+  java: [java]
+  git: [git, github]
+
+seniority:
+  # Title keywords -> tier. Rules are checked in order, first match wins.
+  default: mid
+  rules:
+    - tier: jr
+      title_contains_any: [junior, jr, entry-level, entry level, associate]
+    - tier: staff
+      title_contains_any: [staff, principal]
+    - tier: sr
+      title_contains_any: [senior, sr, lead]
